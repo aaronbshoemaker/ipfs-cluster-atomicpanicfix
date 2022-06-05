@@ -535,7 +535,7 @@ func (ipfs *Connector) PinLs(ctx context.Context, typeFilters []string, out chan
 	var totalPinCount int64
 	defer func() {
 		if err != nil {
-			atomic.StoreInt64(&ipfs.ipfsPinCount, totalPinCount)
+			atomic.StoreInt32(&ipfs.ipfsPinCount, totalPinCount)
 			stats.Record(ipfs.ctx, observations.PinsIpfsPins.M(totalPinCount))
 		}
 	}()
